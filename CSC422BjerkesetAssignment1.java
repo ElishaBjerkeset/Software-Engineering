@@ -27,13 +27,7 @@ public class CSC422BjerkesetAssignment1 {
 
             switch(userInput) {
                 case 1:
-                    System.out.println("+----------------------+");
-                    System.out.println("| ID | NAME      | AGE |");
-                    System.out.println("+----------------------+");
-                    for(int i = 0; i < petData.size(); i++) {
-                        System.out.printf("| %2d | %-9s | %3d |%n", i, petData.get(i).getName(), petData.get(i).getAge());
-                    }
-                    System.out.println("+----------------------+");
+                    printTable(petData);
                     break;
 
                 case 2:
@@ -64,12 +58,48 @@ public class CSC422BjerkesetAssignment1 {
                             System.out.println(petAddedCount);
                         }
                     }
-                    
                     break;
-                    
+
+                    case 5:
+                        System.out.print("Enter a name to search: ");
+                        ArrayList<Pet> petNameSearch = new ArrayList<Pet>();
+                        String nameSearch = scanner.nextLine();
+                        for(int i = 0; i < petData.size(); i++) {
+                            if(nameSearch.toLowerCase().equals(petData.get(i).getName().toLowerCase())) {
+                                petNameSearch.add(petData.get(i));
+                            }
+                        }
+                        printTable(petNameSearch);
+                    break;
+                    case 6:
+                        System.out.print("Enter an age to search: ");
+                        ArrayList<Pet> petAgeSearch = new ArrayList<Pet>();
+                        Integer ageSearch = scanner.nextInt();
+                        scanner.nextLine();
+                        for(int i = 0; i < petData.size(); i++) {
+                            if(ageSearch == petData.get(i).getAge()) {
+                                petAgeSearch.add(petData.get(i));
+                            }
+                        }
+                        printTable(petAgeSearch);
+                    break;
+                    case 7:
+                        System.out.println("Goodbye!");
+                        wantToPlay = false;
             }
         }
         scanner.close();
+    }
+
+    public static void printTable(ArrayList<Pet> pets) {
+        System.out.println("+----------------------+");
+        System.out.println("| ID | NAME      | AGE |");
+        System.out.println("+----------------------+");
+        for(int i = 0; i < pets.size(); i++) {
+            System.out.printf("| %2d | %-9s | %3d |%n", i, pets.get(i).getName(), pets.get(i).getAge());
+        }
+        System.out.println("+----------------------+");
+        System.out.println(pets.size() + " rows in set.");
     }
 
     public static class Pet {
