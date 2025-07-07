@@ -58,7 +58,7 @@ public class CSC422BjerkesetAssignment1 {
                         }
                     }
                     break;
-                    /*case 3:
+                    case 3:
                         printTable(petData);
                         System.out.print("Enter the pet ID you can to update:");
                         Integer updateID = scanner.nextInt();
@@ -77,7 +77,7 @@ public class CSC422BjerkesetAssignment1 {
                         scanner.nextLine();
                         System.out.print(petData.get(deleteNum).getName() + " " + petData.get(deleteNum).getAge() + " is removed. ");
                         petData.remove((int) deleteNum);
-                    break;*/
+                    break;
                     case 5:
                         System.out.print("Enter a name to search: ");
                         ArrayList<Pet> petNameSearch = new ArrayList<Pet>();
