@@ -55,11 +55,29 @@ public class CSC422BjerkesetAssignment1 {
                         else {
                             petData.add(new Pet(petInfo[0], Integer.valueOf(petInfo[1])));
                             petAddedCount += 1;
-                            System.out.println(petAddedCount);
                         }
                     }
                     break;
-
+                    case 3:
+                        printTable(petData);
+                        System.out.print("Enter the pet ID you can to update:");
+                        Integer updateID = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Enter new name and new age: ");
+                        String updatedPet = scanner.nextLine();
+                        String[] petInfo = updatedPet.split(" ");
+                        System.out.println(petData.get(updateID).getName() + " " + petData.get(updateID).getAge() + " changed to " + updatedPet);
+                        petData.get(updateID).setName(petInfo[0]);
+                        petData.get(updateID).setAge(Integer.valueOf(petInfo[1]));
+                    break;
+                    case 4:
+                        printTable(petData);
+                        System.out.print("Enter the pet ID to remove: ");
+                        Integer deleteNum = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print(petData.get(deleteNum).getName() + " " + petData.get(deleteNum).getAge() + " is removed. ");
+                        petData.remove((int) deleteNum);
+                    break;
                     case 5:
                         System.out.print("Enter a name to search: ");
                         ArrayList<Pet> petNameSearch = new ArrayList<Pet>();
