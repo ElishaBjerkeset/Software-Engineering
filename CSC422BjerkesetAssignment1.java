@@ -77,7 +77,7 @@ public class CSC422BjerkesetAssignment1 {
                         scanner.nextLine();
                         System.out.print(petData.get(deleteNum).getName() + " " + petData.get(deleteNum).getAge() + " is removed. ");
                         petData.remove((int) deleteNum);
-                    break;
+                    break;*/
                     case 5:
                         System.out.print("Enter a name to search: ");
                         ArrayList<Pet> petNameSearch = new ArrayList<Pet>();
@@ -100,7 +100,7 @@ public class CSC422BjerkesetAssignment1 {
                             }
                         }
                         printTable(petAgeSearch);
-                    break;*/
+                    break;
                     case 7:
                         System.out.println("Goodbye!");
                         wantToPlay = false;
