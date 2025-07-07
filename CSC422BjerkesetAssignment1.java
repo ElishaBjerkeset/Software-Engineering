@@ -58,7 +58,7 @@ public class CSC422BjerkesetAssignment1 {
                         }
                     }
                     break;
-                    case 3:
+                    /*case 3:
                         printTable(petData);
                         System.out.print("Enter the pet ID you can to update:");
                         Integer updateID = scanner.nextInt();
@@ -100,7 +100,7 @@ public class CSC422BjerkesetAssignment1 {
                             }
                         }
                         printTable(petAgeSearch);
-                    break;
+                    break;*/
                     case 7:
                         System.out.println("Goodbye!");
                         wantToPlay = false;
