@@ -2,6 +2,8 @@
 //Assignment 1 Part 2
 //07/05/2025
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,6 +13,18 @@ public class CSC422BjerkesetAssignment1 {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Pet> petData = new ArrayList<Pet>();
         System.out.println("Pet Database Program.");
+
+        String filePath = "pets.txt";
+        try (Scanner fileScanner = new Scanner(new File(filePath))) {
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                String[] petInfo = line.split(" ");
+                petData.add(new Pet(petInfo[0], Integer.valueOf(petInfo[1])));
+                System.out.println("Pet added.");
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + e.getMessage());
+        }
 
         while(wantToPlay) {
             System.out.println("\nWhat would you like to do?\r\n" + //
