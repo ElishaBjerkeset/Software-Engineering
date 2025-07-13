@@ -73,10 +73,10 @@ public class CSC422BjerkesetAssignment1 {
                                 if(petData.size() == 5) {
                                     System.out.println("Error: Database is full.");
                                 }
-                                else if(petData.size() != 2) {
+                                else if(petInfo.length != 2) {
                                     System.out.println("Error: " + petInput + "is not a valid input.");
                                 }
-                                else if(Integer.valueOf(petInfo[1]) > 20) {
+                                else if(Integer.valueOf(petInfo[1]) > 20 || Integer.valueOf(petInfo[1]) <= 0) {
                                     System.out.println("Error: " + Integer.valueOf(petInfo[1]) + " is not a valid age.");
                                 }
                                 else {
