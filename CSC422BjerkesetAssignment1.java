@@ -12,11 +12,13 @@ import java.util.Scanner;
 
 public class CSC422BjerkesetAssignment1 {
     public static void main(String[] args) {
+        //Setting up variables
         Boolean wantToPlay = true;
         Scanner scanner = new Scanner(System.in);
         ArrayList<Pet> petData = new ArrayList<Pet>();
         System.out.println("Pet Database Program.");
 
+        //Reading information from file
         String filePath = "pets.txt";
         try (Scanner fileScanner = new Scanner(new File(filePath))) {
             while (fileScanner.hasNextLine()) {
@@ -29,6 +31,7 @@ public class CSC422BjerkesetAssignment1 {
             System.err.println("File not found: " + e.getMessage());
         }
 
+        //Main loop for selcting input
         while(wantToPlay) {
             System.out.println("\nWhat would you like to do?\r\n" + //
                                 "1) View all pets\r\n" + //
@@ -42,19 +45,26 @@ public class CSC422BjerkesetAssignment1 {
             scanner.nextLine();
             System.out.println("");
 
+            //Main switch statement for user input
             switch(userInput) {
+                //Calls the printTable function
                 case 1:
                     printTable(petData);
                     break;
 
+                //For adding pets to arraylist
                 case 2:
                     Boolean wantToAdd = true;
                     Integer petAddedCount = 0;
 
+                    //While loop to allow for adding of multiple pets
                     while(wantToAdd) {
+                            //Getting user input
                             System.out.print("add pet (name, age): ");
                             String petInput = scanner.nextLine();
                             String[] petInfo = petInput.split(" ");
+
+                            //If the user wants to exit
                             if("done".equals(petInfo[0])) {
                                 switch(petAddedCount) {
                                     case 0:
@@ -69,6 +79,8 @@ public class CSC422BjerkesetAssignment1 {
                                 }
                                 wantToAdd = false;
                             }
+
+                            //Error checking before adding the input to the database
                             else {
                                 if(petData.size() == 5) {
                                     System.out.println("Error: Database is full.");
@@ -86,6 +98,8 @@ public class CSC422BjerkesetAssignment1 {
                             } 
                     }
                     break;
+
+                    //Logic for selecting an index and then changing the arraylist's information
                     case 3:
                         printTable(petData);
                         System.out.print("Enter the pet ID you can to update:");
@@ -98,6 +112,8 @@ public class CSC422BjerkesetAssignment1 {
                         petData.get(updateID).setName(petInfo[0]);
                         petData.get(updateID).setAge(Integer.valueOf(petInfo[1]));
                     break;
+
+                    //Removing selected index with error handling
                     case 4:
                         printTable(petData);
                         System.out.print("Enter the pet ID to remove: ");
@@ -109,9 +125,10 @@ public class CSC422BjerkesetAssignment1 {
                         }
                         else {
                             System.out.println("Error: ID -1 does not exist.");
-                        }
-                        
+                        } 
                     break;
+
+                    //Searching through array list by comparing the names to user input
                     case 5:
                         System.out.print("Enter a name to search: ");
                         ArrayList<Pet> petNameSearch = new ArrayList<Pet>();
@@ -123,6 +140,8 @@ public class CSC422BjerkesetAssignment1 {
                         }
                         printTable(petNameSearch);
                     break;
+
+                    //Comparing arraylist values with user input
                     case 6:
                         System.out.print("Enter an age to search: ");
                         ArrayList<Pet> petAgeSearch = new ArrayList<Pet>();
@@ -141,6 +160,7 @@ public class CSC422BjerkesetAssignment1 {
             }
         }
 
+        //Trying to write the pet object's info to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("pets.txt"))) {
             for(Pet pet : petData) {
                 writer.write(pet.getName() + " " + pet.getAge());
@@ -153,6 +173,7 @@ public class CSC422BjerkesetAssignment1 {
         scanner.close();
     }
 
+    //Function for printing th table with printf
     public static void printTable(ArrayList<Pet> pets) {
         System.out.println("+----------------------+");
         System.out.println("| ID | NAME      | AGE |");
@@ -164,6 +185,7 @@ public class CSC422BjerkesetAssignment1 {
         System.out.println(pets.size() + " rows in set.");
     }
 
+    //Object for storing information
     public static class Pet {
         private String name;
         private Integer age;
